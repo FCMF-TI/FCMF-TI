@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (profileName) {
             const nombreCompleto = usuario.nombre_completo || 
-                `${usuario.nombre || ''} ${usuario.apellido || ''}`.trim();
+                `${usuario.nombres || ''} ${usuario.apellidos || ''}`.trim();
             profileName.textContent = nombreCompleto || usuario.correo.split('@')[0];
         }
 
