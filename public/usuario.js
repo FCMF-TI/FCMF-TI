@@ -499,7 +499,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>`;
 
         try {
-            const resp = await fetch(`/.netlify/functions/mis-tickets/${usuario.id}`);
+            const resp = await fetch(`/.netlify/functions/mis-tickets?id_usuario=${usuario.id}`);
             const data = await resp.json();
 
             if (!resp.ok) throw new Error(data.error || 'Error al cargar tickets');
@@ -681,7 +681,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>`;
 
         try {
-            const resp = await fetch(`/.netlify/functions/mis-incidentes/${usuario.id}`);
+            const resp = await fetch(`/.netlify/functions/mis-tickets?id_usuario=${usuario.id}`);
             const data = await resp.json();
 
             if (!resp.ok) throw new Error(data.error || 'Error al cargar historial');
