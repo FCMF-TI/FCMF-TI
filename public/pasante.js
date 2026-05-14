@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================
 
     let ticketsData = [];
-    const API_URL = "http://localhost:3000";
+    const API_URL = "/.netlify/functions";
     const id_tecnico = usuario.id;
 
     // Elementos del DOM

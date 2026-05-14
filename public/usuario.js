@@ -499,7 +499,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>`;
 
         try {
-            const resp = await fetch(`http://localhost:3000/mis-tickets/${usuario.id}`);
+            const resp = await fetch(`/.netlify/functions/mis-tickets/${usuario.id}`);
             const data = await resp.json();
 
             if (!resp.ok) throw new Error(data.error || 'Error al cargar tickets');
@@ -568,7 +568,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 btnConfirmar.textContent = 'Cancelando...';
 
                 try {
-                    const resp = await fetch('http://localhost:3000/cancelar-ticket', {
+                    const resp = await fetch('/.netlify/functions/cancelar-ticket', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ id_ticket: ticketIdACancelar })
@@ -681,7 +681,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>`;
 
         try {
-            const resp = await fetch(`http://localhost:3000/mis-incidentes/${usuario.id}`);
+            const resp = await fetch(`/.netlify/functions/mis-incidentes/${usuario.id}`);
             const data = await resp.json();
 
             if (!resp.ok) throw new Error(data.error || 'Error al cargar historial');
@@ -827,7 +827,7 @@ function initReportForm() {
             console.log("Enviando ticket:", ticketData);
 
             try {
-                const response = await fetch("http://localhost:3000/reportar", {
+                const response = await fetch("/.netlify/functions/reportar", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(ticketData)
