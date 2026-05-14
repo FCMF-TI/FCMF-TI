@@ -181,7 +181,7 @@ class AIAssistantLoginForm {
     this.setLoading(true);
 
     try {
-        const response = await fetch("/.netlify/functions/login", {
+        const response = await fetch("/.netlify/functions/index", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Si no hay sesión iniciada
     if (!usuario) {
         alert("Debe iniciar sesión primero");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return;
     }
 
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Acceso denegado. Esta página es solo para pasantes.");
             window.location.href = "usuario.html";
         } else {
-            window.location.href = "login.html";
+            window.location.href = "index.html";
         }
         return;
     }
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem("sidebarCollapsed");
 
         alert("Sesión cerrada correctamente");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }
 
     const logoutBtn = document.getElementById("logoutBtn");

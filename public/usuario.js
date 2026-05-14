@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!usuario) {
         alert("Debe iniciar sesión primero");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
         return;
     }
 
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             alert(mensajes[tipoUsuario]);
             window.location.href = `${tipoUsuario}.html`;
         } else {
-            window.location.href = "login.html";
+            window.location.href = "index.html";
         }
     }
 
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         itemsToRemove.forEach(item => localStorage.removeItem(item));
         
         alert("Sesión cerrada correctamente");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }
 
     // ============================================================
@@ -785,7 +785,7 @@ function initReportForm() {
 
             if (!usuarioActual) {
                 alert("No se encontró la sesión del usuario");
-                window.location.href = "login.html";
+                window.location.href = "index.html";
                 return;
             }
 
