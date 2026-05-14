@@ -681,7 +681,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>`;
 
         try {
-            const resp = await fetch(`/.netlify/functions/mis-incidentes?id_usuario${usuario.id}`);
+            const resp = await fetch(`/.netlify/functions/mis-incidentes?id_usuario=${usuario.id}`);
             const data = await resp.json();
 
             if (!resp.ok) throw new Error(data.error || 'Error al cargar historial');
