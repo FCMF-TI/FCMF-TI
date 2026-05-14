@@ -576,7 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         try {
-            const response = await fetch(`${API_URL}/ticket/estado`, {
+            const response = await fetch(`${API_URL}/ticket-estado`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
