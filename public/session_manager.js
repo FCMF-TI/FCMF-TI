@@ -28,11 +28,11 @@ function cerrarSesion(mensaje = "Sesión cerrada") {
         alert(mensaje);
     }
     
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
 
 // Ejecutar verificación al cargar cualquier página protegida
-if (window.location.pathname !== "/login.html" && 
-    !window.location.pathname.includes("login.html")) {
+if (window.location.pathname !== "/index.html" && 
+    !window.location.pathname.includes("index.html")) {
     verificarExpiracionSesion();
 }
