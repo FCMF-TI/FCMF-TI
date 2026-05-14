@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Portal de Soporte - FCMF</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="usuario.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+    <style>
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    </style>
+</head>
+
+<body class="dashboard-body dark">
+    <div class="neural-background"></div>
+
+    
+
+    <div class="dashboard-container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <header class="sidebar-header">
+                <div class="header-info">
+                    <a href="#" class="header-logo">
+                        <img class="avatar" src="LogoUG FCMF.jpeg" alt="FCMF">
+                    </a>
+                </div>
+                <button class="toggler sidebar-toggler" id="sidebarToggler" title="Colapsar menú">
+                    <span class="material-symbols-rounded">chevron_left</span>
+                </button>
+                <button class="toggler menu-toggler" id="menuToggler" title="Abrir menú">
+                        <span class="material-symbols-rounded">menu</span>
+                </button>
+            </header>
+
+            <nav class="sidebar-nav">
+                <ul class="nav-list primary-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" data-view="inicio">
+                            <span class="nav-icon material-symbols-rounded">confirmation_number</span>
+                            <span class="nav-label">Mis Tickets</span>
+                        </a>
+                        <span class="nav-tooltip">Mis Tickets</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-view="historial">
+                            <span class="nav-icon material-symbols-rounded">history</span>
+                            <span class="nav-label">Historial</span>
+                        </a>
+                        <span class="nav-tooltip">Historial</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-view="reporte">
+                            <span class="nav-icon material-symbols-rounded">add_circle</span>
+                            <span class="nav-label">Reportar Incidente</span>
+                        </a>
+                        <span class="nav-tooltip">Reportar Incidente</span>
+                    </li>
+                </ul>
+
+                <ul class="nav-list secondary-nav">
+                    <li class="nav-item profile-item">
+                        <div class="profile-info-container" id="profileInfo">
+                            <div class="profile-avatar">
+                                <span class="material-symbols-rounded">account_circle</span>
+                            </div>
+                            <div class="profile-details">
+                                <h4 class="profile-name" id="profileName">Cargando...</h4>
+                                <p class="profile-role" id="profileRole">Cargando...</p>
+                                <p class="profile-email" id="profileEmail">cargando@email.com</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" id="modeToggleBtn" style="cursor:pointer;">
+                            <span class="nav-icon material-symbols-rounded" id="modeIcon">dark_mode</span>
+                            <span class="nav-label" id="modeText">Modo Oscuro</span>
+                        </div>
+                        <span class="nav-tooltip">Cambiar Tema</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" id="logoutBtn">
+                            <span class="nav-icon material-symbols-rounded">logout</span>
+                            <span class="nav-label">Cerrar Sesión</span>
+                        </a>
+                        <span class="nav-tooltip">Cerrar Sesión</span>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="main-content">
+            
+
+            <div class="content-wrapper">
+
+                <!-- ══ VIEW: INICIO ══ -->
+                <div class="view active" id="view-inicio">
+                    <header class="main-header">
+                        <h2>Mis Tickets Activos</h2>
+                    </header>
+
+                    <!-- Stats -->
+                    <div class="stats-bar">
+                        <div class="stat-card">
+                            <div class="stat-icon blue">
+                                <span class="material-symbols-rounded">confirmation_number</span>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-label">Total activos</div>
+                                <div class="stat-value" id="statTotal">2</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon yellow">
+                                <span class="material-symbols-rounded">hourglass_top</span>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-label">En espera</div>
+                                <div class="stat-value" id="statEspera">1</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green">
+                                <span class="material-symbols-rounded">build</span>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-label">En intervención</div>
+                                <div class="stat-value" id="statIntervencion">1</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="section-title">Tickets abiertos</p>
+
+                    <div class="tickets-list" id="ticketsList">
+                        <!-- Los tickets se cargan dinámicamente desde la BD -->
+                    </div>
+                </div>
+
+                                <!-- ══ VIEW: HISTORIAL ══ -->
+                <div class="view" id="view-historial">
+                    <header class="main-header">
+                        <h2>Historial de Tickets</h2>
+                    </header>
+
+                    <p class="section-title">Tickets cerrados</p>
+
+                    <div id="historialList">
+                        <!-- El historial se carga dinámicamente desde la BD -->
+                    </div>
+                </div>
+
+                                <!-- ══ VIEW: REPORTE ══ -->
+                <div class="view" id="view-reporte">
+                    <header class="main-header">
+                        <h2>Reportar Incidente</h2>
+                    </header>
+
+                    <div class="form-card">
+                        <form id="reportForm">
+                            <div class="input-group">
+                                <label>Nivel de Urgencia</label>
+                                <select id="urgencia" required>
+                                    <option value="" disabled selected>Seleccione la prioridad</option>
+                                    <option value="bajo">Bajo — Consulta / Duda</option>
+                                    <option value="medio">Medio — Mal funcionamiento</option>
+                                    <option value="alto">Alto — Bloqueo de trabajo</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Departamento</label>
+                                <select id="departamento" required>
+                                    <option value="" disabled selected>Seleccione el departamento</option>
+                                    <option value="titulacion">Titulación</option>
+                                    <option value="administracion">Administración</option>
+                                    <option value="secretaria">Secretaría</option>
+                                    <option value="vinculacion">Vinculación</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Tipo de problema</label>
+                                <select id="dispositivo" required>
+                                    <option value="" disabled selected>Seleccione</option>
+                                    <option value="pc">PC de Escritorio</option>
+                                    <option value="impresora">Impresora</option>
+                                    <option value="red">Conectividad / Red</option>
+                                    <option value="software">Problema de Software</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group" id="softwareProgramaGroup" style="display:none;">
+                                <label>Programa / Software</label>
+                                <select id="softwarePrograma">
+                                    <option value="" disabled selected>Seleccione el programa</option>
+                                    <option>Windows</option><option>Linux</option>
+                                    <option>Microsoft 365</option><option>Microsoft Word</option>
+                                    <option>Microsoft Excel</option><option>Microsoft PowerPoint</option>
+                                    <option>Microsoft Teams</option><option>Microsoft SharePoint</option>
+                                    <option>Microsoft Outlook</option><option>Moodle</option>
+                                    <option>SIUG</option><option>Canva</option><option>Power BI</option>
+                                    <option>Adobe Acrobat</option><option>Mendeley</option>
+                                    <option>GitHub</option><option>Visual Studio Code</option>
+                                    <option>Wireshark</option><option>AnyDesk</option>
+                                    <option>TeamViewer</option><option>Trello</option>
+                                    <option>Otro (nómbrelo en la descripción)</option>
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <label>Descripción del Problema</label>
+                                <textarea id="descripcion" placeholder="Explique brevemente lo que sucede..." required rows="4"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                <span class="material-symbols-rounded">send</span>
+                                Enviar Reporte
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL CANCELAR TICKET -->
+    <div class="modal-overlay" id="modalCancelar">
+        <div class="modal-box">
+            <div class="modal-icon">
+                <span class="material-symbols-rounded">cancel</span>
+            </div>
+            <h3>¿Cancelar este ticket?</h3>
+            <p id="modalCancelarDesc">Esta acción cerrará el ticket "<strong id="modalTicketNombre"></strong>" y notificará al equipo TI que ya no es necesaria la intervención.</p>
+            <div class="modal-actions">
+                <button class="btn-modal-confirm" id="btnConfirmarCancelar">Sí, cancelar ticket</button>
+                <button class="btn-modal-cancel" id="btnCerrarModal">No, mantener</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast">
+        <span class="material-symbols-rounded">check_circle</span>
+        <span id="toastMsg">Ticket cancelado correctamente</span>
+    </div>
+
+    <script src="usuario.js"></script>
+</body>
+</html>

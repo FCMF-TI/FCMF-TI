@@ -1,0 +1,550 @@
+/* ============================================ */
+/* USUARIO_DASHBOARD.CSS — ESTILOS USUARIO FINAL*/
+/* Proyecto: Portal de Soporte TI — FCMF        */
+/* Depende de: style.css (estilos globales)     */
+/* ============================================ */
+
+/* Error del botón */
+
+
+/* Logout en rojo */
+/* DEJALO QUE SE VE MAS CHEVERE */
+
+
+
+/* ── VISTAS (tabs internos) ── */
+
+.view { display: none; }
+.view.active { display: block; }
+
+/* ============================================ */
+/* STATS BAR                                    */
+/* ============================================ */
+
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.stat-card {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 14px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.stat-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stat-icon .material-symbols-rounded { font-size: 22px; }
+.stat-icon.blue  { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.stat-icon.yellow { background: rgba(234, 179, 8, 0.15);  color: #eab308; }
+.stat-icon.green  { background: rgba(16, 185, 129, 0.15); color: #10b981; }
+
+.stat-info { display: flex; flex-direction: column; }
+.stat-label { font-size: 12px; color: #64748b; margin-bottom: 2px; }
+.stat-value { font-size: 22px; font-weight: 700; color: #f8fafc; }
+
+/* ============================================ */
+/* SECCIÓN TÍTULO                               */
+/* ============================================ */
+
+.section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+}
+
+/* ============================================ */
+/* TICKET CARDS (vista usuario)                 */
+/* ============================================ */
+
+.tickets-list { display: flex; flex-direction: column; gap: 14px; }
+
+.ticket-card {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(59, 130, 246, 0.12);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+}
+
+.ticket-card:hover { border-color: rgba(59, 130, 246, 0.35); transform: translateY(-1px); }
+.ticket-card.expanded { border-color: rgba(59, 130, 246, 0.4);    border-top: 2px solid #3b82f6;
+ }
+
+.ticket-card-header { padding: 18px 20px; display: flex; align-items: flex-start; gap: 14px; }
+
+.ticket-priority-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
+.priority-alto  { background: #ef4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.5); }
+.priority-medio { background: #eab308; box-shadow: 0 0 8px rgba(234, 179, 8, 0.5); }
+.priority-bajo  { background: #10b981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.5); }
+
+.ticket-card-main { flex: 1; min-width: 0; }
+
+.ticket-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; gap: 12px; }
+
+.ticket-number { font-size: 11px; color: #3b82f6; font-weight: 600; }
+.ticket-badges { display: flex; gap: 6px; align-items: center; }
+
+/* ── Badges de estado ── */
+.badge { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+.badge-espera      { background: rgba(234, 179, 8, 0.15);  color: #eab308; border: 1px solid rgba(234,179,8,0.3); }
+.badge-intervencion { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+.badge-resuelto    { background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+.badge-cancelado   { background: rgba(100, 116, 139, 0.15); color: #94a3b8; border: 1px solid rgba(100,116,139,0.3); }
+
+.ticket-title { font-size: 15px; font-weight: 600; color: #f8fafc; margin-bottom: 4px; }
+
+.ticket-desc {
+    font-size: 13px;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ticket-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    border-top: 1px solid rgba(59, 130, 246, 0.08);
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.ticket-meta-info { display: flex; align-items: center; gap: 16px; }
+.ticket-meta-item { display: flex; align-items: center; gap: 5px; font-size: 12px; color: #475569; }
+.ticket-meta-item .material-symbols-rounded { font-size: 14px; }
+
+.ticket-expand-btn { display: flex; align-items: center; gap: 4px; font-size: 12px; color: #3b82f6; cursor: pointer; transition: color 0.2s; }
+.ticket-expand-btn .material-symbols-rounded { font-size: 16px; transition: transform 0.3s; }
+.ticket-card.expanded .ticket-expand-btn .material-symbols-rounded { transform: rotate(180deg); }
+
+/* ── DETALLE EXPANDIDO ── */
+
+.ticket-detail { display: none !important; border-top: 1px solid rgba(59, 130, 246, 0.12); }
+.ticket-card.expanded .ticket-detail { display: block !important; }
+
+.ticket-detail-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    width: 100%;
+}
+
+/* ============================================ */
+/* LÍNEA DE TIEMPO                              */
+/* ============================================ */
+
+.timeline-section {
+    padding: 24px;
+    border-right: 1px solid rgba(59, 130, 246, 0.1);
+    display: block !important;
+}
+
+.timeline-section h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+}
+
+.timeline { display: flex; flex-direction: column; gap: 0; }
+
+.timeline-step { display: flex; gap: 16px; position: relative; }
+
+.timeline-left { display: flex; flex-direction: column; align-items: center; width: 32px; flex-shrink: 0; }
+
+.timeline-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    transition: all 0.3s;
+}
+
+.timeline-dot .material-symbols-rounded { font-size: 16px; }
+
+.timeline-step.done .timeline-dot    { background: rgba(16, 185, 129, 0.2); border: 2px solid rgba(16, 185, 129, 0.5); color: #10b981; }
+.timeline-step.current .timeline-dot { background: rgba(59, 130, 246, 0.2); border: 2px solid #3b82f6; color: #3b82f6; box-shadow: 0 0 12px rgba(59, 130, 246, 0.4); animation: pulseDot 2s ease-in-out infinite; }
+.timeline-step.pending .timeline-dot { background: rgba(71, 85, 105, 0.2); border: 2px solid rgba(71, 85, 105, 0.3); color: #475569; }
+
+@keyframes pulseDot {
+    0%, 100% { box-shadow: 0 0 12px rgba(59, 130, 246, 0.4); }
+    50%       { box-shadow: 0 0 20px rgba(59, 130, 246, 0.7); }
+}
+
+.timeline-connector { flex: 1; width: 2px; background: rgba(59, 130, 246, 0.15); margin: 4px 0; min-height: 24px; }
+.timeline-step.done .timeline-connector    { background: rgba(16, 185, 129, 0.4); }
+.timeline-step.current .timeline-connector { background: rgba(59, 130, 246, 0.3); }
+
+.timeline-content { padding: 4px 0 24px; flex: 1; min-width: 0; }
+
+.timeline-step-title { font-size: 14px; font-weight: 600; color: #f8fafc; margin-bottom: 3px; }
+.timeline-step.pending .timeline-step-title { color: #475569; }
+
+.timeline-time { font-size: 12px; color: #475569; margin-bottom: 6px; }
+.timeline-step.current .timeline-time { color: #3b82f6; }
+.timeline-step.done .timeline-time    { color: #10b981; }
+
+.timeline-person {
+    display: inline-flex;
+    flex-direction: column;
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-top: 4px;
+}
+
+.timeline-person-name { font-size: 13px; font-weight: 600; color: #f8fafc; }
+.timeline-person-role { font-size: 11px; color: #3b82f6; margin-top: 1px; }
+
+/* ── ETA ── */
+
+.eta-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(59, 130, 246, 0.06);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    border-radius: 12px;
+    padding: 12px 16px;
+}
+
+.eta-icon  { color: #3b82f6; font-size: 22px; }
+.eta-label { font-size: 11px; color: #64748b; }
+.eta-value { font-size: 15px; font-weight: 600; color: #f8fafc; }
+
+/* ============================================ */
+/* SECCIÓN DE COMENTARIOS                       */
+/* ============================================ */
+
+.comments-section { padding: 24px; display: flex !important; flex-direction: column; gap: 16px; }
+
+.comments-section h4 { font-size: 12px; font-weight: 600; color: #475569; text-transform: uppercase; letter-spacing: 0.08em; }
+
+.comments-list { display: flex; flex-direction: column; gap: 10px; }
+
+.comment-bubble {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(59, 130, 246, 0.1);
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.comment-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+.comment-author   { font-size: 12px; font-weight: 600; color: #60a5fa; }
+.comment-role-tag { font-size: 10px; color: #3b82f6; background: rgba(59, 130, 246, 0.12); padding: 2px 7px; border-radius: 20px; }
+.comment-time  { font-size: 11px; color: #475569; }
+.comment-text  { font-size: 13px; color: #94a3b8; line-height: 1.5; }
+
+.no-comments { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 20px; color: #475569; font-size: 13px; text-align: center; }
+.no-comments .material-symbols-rounded { font-size: 28px; color: #334155; }
+
+/* ── BOTÓN CANCELAR TICKET ── */
+
+.btn-cancelar-ticket {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    background: rgba(239, 68, 68, 0.06);
+    color: #f87171;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.btn-cancelar-ticket:hover { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.5); }
+.btn-cancelar-ticket .material-symbols-rounded { font-size: 16px; }
+
+/* ============================================ */
+/* HISTORIAL                                    */
+/* ============================================ */
+
+.historial-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 60px 20px; color: #475569; text-align: center; }
+.historial-empty .material-symbols-rounded { font-size: 48px; color: #1e293b; }
+.historial-empty h3 { font-size: 16px; font-weight: 600; color: #334155; }
+.historial-empty p { font-size: 14px; }
+
+.historial-card {
+    background: rgba(15, 23, 42, 0.5);
+    border: 1px solid rgba(59, 130, 246, 0.08);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.historial-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+.historial-title { font-size: 14px; font-weight: 600; color: #94a3b8; }
+.historial-desc  { font-size: 13px; color: #475569; margin-bottom: 12px; }
+
+.historial-footer { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: #475569; border-top: 1px solid rgba(59, 130, 246, 0.06); padding-top: 10px; }
+.historial-footer-item { display: flex; align-items: center; gap: 5px; }
+.historial-footer-item .material-symbols-rounded { font-size: 14px; color: #334155; }
+
+/* ============================================ */
+/* FORMULARIO DE REPORTE                        */
+/* ============================================ */
+
+.form-card {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(59, 130, 246, 0.12);
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 680px;
+}
+
+.form-card .input-group { margin-bottom: 20px; }
+
+.form-card label { display: block; font-size: 13px; font-weight: 500; color: #94a3b8; margin-bottom: 8px; margin-left: 0; }
+
+.form-card select,
+.form-card textarea {
+    width: 100%;
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 10px;
+    padding: 12px 14px;
+    color: #f8fafc;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    margin-top: 0;
+    box-shadow: none;
+}
+
+.form-card select:focus,
+.form-card textarea:focus { border-color: #3b82f6; box-shadow: none; }
+
+.form-card select option { background: #0f172a; }
+.form-card textarea { resize: vertical; min-height: 100px; }
+
+.btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.btn-submit:hover { background: linear-gradient(135deg, #3b82f6, #2563eb); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4); }
+.btn-submit .material-symbols-rounded { font-size: 18px; }
+
+/* ============================================ */
+/* MODAL — CONFIRMAR CANCELACIÓN                */
+/* ============================================ */
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.visible { display: flex; }
+
+.modal-box {
+    background: rgba(15, 23, 42, 0.98);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 20px;
+    padding: 32px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+.modal-box .modal-icon { width: 56px; height: 56px; border-radius: 50%; background: rgba(239, 68, 68, 0.15); border: 2px solid rgba(239, 68, 68, 0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
+.modal-box .modal-icon .material-symbols-rounded { font-size: 28px; color: #f87171; }
+.modal-box h3 { font-size: 18px; font-weight: 700; color: #f8fafc; margin-bottom: 10px; }
+.modal-box p  { font-size: 14px; color: #64748b; margin-bottom: 24px; line-height: 1.6; }
+
+.modal-actions { display: flex; gap: 12px; }
+
+.btn-modal-confirm {
+    flex: 1;
+    padding: 12px;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    border-radius: 10px;
+    color: #f87171;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.btn-modal-confirm:hover { background: rgba(239, 68, 68, 0.25); }
+
+.btn-modal-cancel {
+    flex: 1;
+    padding: 12px;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-radius: 10px;
+    color: #60a5fa;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.btn-modal-cancel:hover { background: rgba(59, 130, 246, 0.2); }
+
+/* ============================================ */
+/* TOAST DE NOTIFICACIÓN                        */
+/* ============================================ */
+
+.toast {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    border-radius: 14px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #10b981;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 600;
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast .material-symbols-rounded { font-size: 20px; }
+
+/* ============================================ */
+/* EMPTY STATE                                  */
+/* ============================================ */
+
+.empty-state { display: flex; flex-direction: column; align-items: center; padding: 60px 20px; gap: 12px; color: #475569; text-align: center; }
+.empty-state .material-symbols-rounded { font-size: 52px; color: #1e293b; }
+.empty-state h3 { font-size: 16px; font-weight: 600; color: #334155; }
+.empty-state p  { font-size: 14px; }
+
+.btn-goto-report {
+    margin-top: 8px;
+    padding: 11px 22px;
+    background: rgba(59, 130, 246, 0.12);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 10px;
+    color: #60a5fa;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.btn-goto-report:hover { background: rgba(59, 130, 246, 0.2); }
+
+
+/* ============================================ */
+/* MODO CLARO — OVERRIDES USUARIO               */
+/* ============================================ */
+
+.dashboard-body.light .main-header h2      { color: #0f172a; }
+.dashboard-body.light .section-title       { color: #94a3b8; }
+.dashboard-body.light .stat-card           { background: #ffffff; border-color: #e2e8f0; }
+.dashboard-body.light .stat-value          { color: #0f172a; }
+.dashboard-body.light .ticket-card         { background: #ffffff; border-color: #e2e8f0; }
+.dashboard-body.light .ticket-title        { color: #0f172a; }
+.dashboard-body.light .ticket-desc         { color: #94a3b8; }
+.dashboard-body.light .ticket-card-footer  { background: rgba(0,0,0,0.02); border-top-color: #f1f5f9; }
+.dashboard-body.light .timeline-section    { border-right-color: #e2e8f0; }
+.dashboard-body.light .timeline-step-title { color: #0f172a; }
+.dashboard-body.light .timeline-person     { background: rgba(59,130,246,0.06); border-color: #bfdbfe; }
+.dashboard-body.light .timeline-person-name { color: #1e293b; }
+.dashboard-body.light .comment-bubble      { background: #f8fafc; border-color: #e2e8f0; }
+.dashboard-body.light .comment-text        { color: #475569; }
+.dashboard-body.light .form-card           { background: #ffffff; border-color: #e2e8f0; }
+.dashboard-body.light .form-card select,
+.dashboard-body.light .form-card textarea  { background: #f8fafc; border-color: #cbd5e1; color: #0f172a; }
+.dashboard-body.light .form-card label     { color: #64748b; }
+.dashboard-body.light .historial-card      { background: #ffffff; border-color: #e2e8f0; }
+.dashboard-body.light .historial-title     { color: #334155; }
+.dashboard-body.light .profile-name        { color: #0f172a; }
+.dashboard-body.light .profile-info-container { background: rgba(59,130,246,0.04); border-color: #bfdbfe; }
+.dashboard-body.light .secondary-nav       { border-top-color: #e2e8f0; }
+.dashboard-body.light .modal-box           { background: #ffffff; }
+.dashboard-body.light .modal-box h3        { color: #0f172a; }
+.dashboard-body.light .eta-card            { background: rgba(59,130,246,0.05); }
+.dashboard-body.light .eta-value           { color: #0f172a; }
+.dashboard-body.light .nav-link            { color: #64748b; }
+.dashboard-body.light .nav-link:hover      { background: rgba(59,130,246,0.08); color: #2563eb; }
+.dashboard-body.light .nav-link.active     { background: rgba(59,130,246,0.12); color: #1d4ed8; }
+
+/* ============================================ */
+/* RESPONSIVE — USUARIO DASHBOARD               */
+/* ============================================ */
+
+@media (max-width: 900px) {
+    .ticket-detail-inner { grid-template-columns: 1fr; }
+    .timeline-section { border-right: none; border-bottom: 1px solid rgba(59,130,246,0.1); }
+}
+
+@media (max-width: 768px) {
+    
+
+    
+
+    
+
+    .main-content { margin-left: 0; width: 100%; }
+    
+
+    .content-wrapper { padding: 20px; }
+    .stats-bar { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .stat-card { padding: 12px; }
+    .stat-value { font-size: 18px; }
+}

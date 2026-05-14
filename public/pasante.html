@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Panel de Gestión TI - FCMF</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pasante.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0">
+</head>
+
+<body class="dashboard-body dark">
+    <div class="neural-background"></div>
+
+    <div class="dashboard-container">
+        <aside class="sidebar" id="sidebar">
+            <header class="sidebar-header">
+                <div class="header-info">
+                    <a href="#" class="header-logo">
+                        <img class="avatar" src="LogoUG FCMF.jpeg" alt="FCMF">
+                    </a>
+                </div>
+                <div class="header-buttons">
+                    <button class="toggler sidebar-toggler" id="sidebarToggler" title="Colapsar menú">
+                        <span class="material-symbols-rounded">chevron_left</span>
+                    </button>
+                    <button class="toggler menu-toggler" id="menuToggler" title="Abrir menú">
+                        <span class="material-symbols-rounded">menu</span>
+                    </button>
+                </div>
+            </header>
+
+            <nav class="sidebar-nav">
+                <!-- Primary top nav -->
+                <ul class="nav-list primary-nav">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">
+                            <span class="nav-icon material-symbols-rounded">confirmation_number</span>
+                            <span class="nav-label">Tickets</span>
+                        </a>
+                        <span class="nav-tooltip">Tickets</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="nav-icon material-symbols-rounded">history</span>
+                            <span class="nav-label">Historial</span>
+                        </a>
+                        <span class="nav-tooltip">Historial</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <span class="nav-icon material-symbols-rounded">storage</span>
+                            <span class="nav-label">Base de Datos</span>
+                        </a>
+                        <span class="nav-tooltip">Base de Datos</span>
+                    </li>
+                </ul>
+
+                <!-- Secondary bottom nav -->
+                <ul class="nav-list secondary-nav">
+                    <!-- Perfil con información del usuario -->
+                    <li class="nav-item profile-item">
+                        <div class="profile-info-container" id="profileInfo">
+                            <div class="profile-avatar">
+                                <span class="material-symbols-rounded">account_circle</span>
+                            </div>
+                            <div class="profile-details">
+                                <h4 class="profile-name" id="profileName">Cargando...</h4>
+                                <p class="profile-role" id="profileRole">Cargando...</p>
+                                <p class="profile-email" id="profileEmail">cargando@email.com</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item mode-item">
+                        <div class="nav-link mode-trigger" id="modeToggleBtn">
+                            <span class="nav-icon material-symbols-rounded" id="modeIcon">dark_mode</span>
+                            <span class="nav-label" id="modeText">Modo Oscuro</span>
+                        </div>
+                        <span class="nav-tooltip">Cambiar Tema</span>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" id="logoutBtn">
+                            <span class="nav-icon material-symbols-rounded">logout</span>
+                            <span class="nav-label">Cerrar Sesión</span>
+                        </a>
+                        <span class="nav-tooltip">Cerrar Sesión</span>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-wrapper">
+                <header class="main-header">
+                    <h2>Gestión de Incidentes</h2>
+                    <div class="header-actions">
+                        <button class="btn-refresh" id="refreshBtn">🔄 Actualizar Lista</button>
+                    </div>
+                </header>
+
+                <section id="contenedorTickets">
+                    <!-- Los tickets se cargarán dinámicamente desde JS -->
+                    <div class="loading-tickets">
+                        <p>Cargando tickets...</p>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+<!-- MODAL para solución de tickets -->
+<div class="modal-overlay" id="modalIntervenir">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>🛠️ Registro de Solución</h3>
+        </div>
+        
+        <div class="modal-body">
+            <div class="ticket-info-summary" id="modalTicketInfo">
+                <p><strong>Incidente:</strong> <span id="nombreIncidente">Cargando...</span></p>
+                <p><strong>Reportado por:</strong> <span id="reportadoPor">Cargando...</span></p>
+                <p><strong>Departamento:</strong> <span id="departamentoTicket">Cargando...</span></p>
+                <p><strong>Estado:</strong> <span id="estadoTicketActual">Cargando...</span></p>
+                <p><strong>Descripción:</strong> <span id="descripcionTicket">Cargando...</span></p>
+            </div>
+
+            <div class="input-group">
+    <label>Nivel del problema detectado:</label>
+    <select id="nivelProblema" class="modal-select">
+        <option value="" disabled selected>Seleccione el nivel del problema</option>
+        <option value="bajo">Nivel Bajo (Software / Configuración)</option>
+        <option value="medio">Nivel Medio (Hardware menor)</option>
+        <option value="alto">Nivel Alto (Infraestructura / Red)</option>
+    </select>
+</div>
+
+<div class="input-group">
+    <label>Activo afectado:</label>
+    <select id="selectorActivo" class="modal-select">
+        <option value="" disabled selected>Seleccione un activo afectado</option>
+    </select>
+</div>
+
+<div class="input-group">
+    <label>Nuevo estado del activo:</label>
+    <select id="estadoActivo" class="modal-select">
+        <option value="" disabled selected>Seleccione el nuevo estado</option>
+        <option value="operativo">🟢 Operativo</option>
+        <option value="mantenimiento">🟡 En Mantenimiento</option>
+        <option value="danado">🔴 Dañado / Reparación necesaria</option>
+    </select>
+</div>
+
+<div class="input-group">
+    <label>Descripción de la solución aplicada:</label>
+    <textarea id="solucionDescripcion" 
+        placeholder="Descripción detallada de las acciones realizadas para resolver el incidente..." 
+        rows="4"
+    ></textarea>
+</div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-accion-modal" id="btnAccionModal">🔄 Marcar como En Intervención</button>
+            <button class="btn-cancelar" id="cancelarModalBtn">Cancelar</button>
+        </div>
+    </div>
+</div>
+    
+    <script src="session-manager.js"></script>
+    <script src="pasante.js"></script>
+</body>
+</html>

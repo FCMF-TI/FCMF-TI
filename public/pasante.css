@@ -1,0 +1,392 @@
+/* ============================================ */
+/* PASANTE.CSS — ESTILOS ESPECÍFICOS PASANTE    */
+/* Proyecto: Portal de Soporte TI — FCMF        */
+/* Depende de: style.css (estilos globales)     */
+/* ============================================ */
+
+/* ── TARJETAS DE TICKETS (vista pasante) ── */
+
+.btn-refresh {
+    background: transparent;
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-refresh:hover {
+    background: #3b82f6;
+    color: white;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+.ticket-card-item {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ticket-card-item:hover {
+    background: rgba(30, 41, 59, 0.9);
+    border-color: rgba(59, 130, 246, 0.5);
+    transform: translateY(-2px);
+}
+
+@media (min-width: 769px) {
+    .ticket-card-item { display: flex; align-items: center; gap: 20px; }
+    .ticket-badge-container { flex-shrink: 0; min-width: 110px; }
+    .ticket-details { flex: 1; }
+    .ticket-actions { flex-shrink: 0; min-width: 130px; }
+}
+
+@media (max-width: 768px) {
+    .ticket-card-item { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px; }
+    .ticket-badge { display: inline-block; font-size: 11px; padding: 6px 14px; }
+    .ticket-details h3 { font-size: 1rem; }
+    .btn-intervenir { width: 100%; }
+}
+
+/* ── BADGE DE PRIORIDAD ── */
+
+.ticket-badge {
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    vertical-align: middle;
+}
+
+.ticket-badge .material-symbols-rounded {
+    font-size: 18px !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    vertical-align: middle;
+}
+
+.ticket-badge.alta  { background: rgba(234, 88, 12, 0.2);  color: #ea580c; border: 1px solid #ea580c; }
+.ticket-badge.medio { background: rgba(245, 158, 11, 0.2); color: #f59e0b; border: 1px solid #f59e0b; }
+.ticket-badge.bajo  { background: rgba(16, 185, 129, 0.2); color: #10b981; border: 1px solid #10b981; }
+
+/* ── DETALLES DEL TICKET ── */
+
+.ticket-details h3 { color: #ffffff; font-size: 1.15rem; margin: 0 0 4px 0; }
+
+.ticket-meta { color: #60a5fa; font-weight: 500; font-size: 0.85rem; margin-bottom: 6px; }
+
+.ticket-desc {
+    color: #cbd5e1;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    max-width: 90%;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.ticket-reportado {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ── BOTÓN INTERVENIR ── */
+
+.btn-intervenir {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.btn-intervenir:hover { background: #60a5fa; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5); }
+
+.btn-intervenir.btn-en-intervencion { background: #f59e0b; opacity: 0.7; cursor: pointer; }
+.btn-intervenir.btn-en-intervencion:hover { transform: translateY(-2px); background: #f59e0b; box-shadow: 0 6px 20px rgba(245, 158, 11, 0.5); opacity: 0.9; }
+
+/* ============================================ */
+/* MODAL — REGISTRO DE SOLUCIÓN (pasante)       */
+/* ============================================ */
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #1e293b;
+    border: 2px solid #3b82f6;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 650px;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 50px rgba(59, 130, 246, 0.2);
+    animation: slideUp 0.3s ease-out;
+}
+
+.modal-header {
+    padding: 20px 24px 12px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    background: #1e293b;
+    z-index: 10;
+    border-radius: 20px 20px 0 0;
+}
+
+.modal-header h3 { color: white; margin: 0; display: flex; align-items: center; gap: 10px; font-size: 1.3rem; }
+
+.modal-body { padding: 20px 24px; overflow-y: auto; flex: 1; }
+
+.modal-footer {
+    padding: 16px 24px 24px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    position: sticky;
+    bottom: 0;
+    background: #1e293b;
+    border-radius: 0 0 20px 20px;
+}
+
+.modal-body::-webkit-scrollbar { width: 6px; }
+.modal-body::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 10px; }
+.modal-body::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+.modal-body::-webkit-scrollbar-thumb:hover { background: #60a5fa; }
+
+/* ── RESUMEN DEL TICKET EN MODAL ── */
+
+.ticket-info-summary {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border-left: 4px solid #3b82f6;
+}
+
+.ticket-info-summary p { margin: 6px 0; word-wrap: break-word; line-height: 1.4; }
+.ticket-info-summary strong { color: #94a3b8; font-weight: 600; }
+
+/* ── CAMPOS DEL MODAL EN HORIZONTAL ── */
+
+.modal-body .input-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.modal-body .input-group label { min-width: 180px; margin-bottom: 0; font-size: 13px; font-weight: 500; color: #94a3b8; }
+
+.modal-body .input-group .modal-select {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    color: white;
+    padding: 10px 12px;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.modal-body .input-group .modal-select option { background: #1e293b; color: white; padding: 8px; }
+.modal-body .input-group .modal-select:focus { border-color: #3b82f6; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
+
+.modal-body .input-group:last-of-type { flex-direction: column; align-items: flex-start; margin-top: 5px; gap: 4px; }
+.modal-body .input-group:last-of-type label { min-width: auto; margin-bottom: 0; }
+
+.modal-body .input-group textarea {
+    width: 100%;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: white;
+    padding: 10px 12px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    min-height: 70px;
+}
+
+.modal-body .input-group textarea:focus { border-color: #3b82f6; outline: none; box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); }
+
+/* Forzar alineación del selector de estado */
+.input-group:has(#estadoActivo) { display: flex !important; }
+
+#estadoActivo:disabled { opacity: 0.6; cursor: not-allowed; }
+#estadoActivo { display: block !important; }
+
+.modal-body .input-group { display: flex; align-items: center; gap: 15px; margin-bottom: 16px; }
+.modal-body .input-group label { min-width: 180px; margin-bottom: 0; font-size: 13px; font-weight: 500; color: #94a3b8; }
+.modal-body .input-group .modal-select { flex: 1; min-width: 200px; }
+
+/* ── BOTONES DEL MODAL ── */
+
+.btn-accion-modal {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.btn-accion-modal:hover { background: #d97706; transform: translateY(-2px); }
+.btn-accion-modal:active { transform: translateY(0); }
+.btn-accion-modal:disabled { background: #94a3b8; cursor: not-allowed; transform: none; }
+
+.btn-intervenir-ticket {
+    background: #f59e0b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.btn-intervenir-ticket:hover { background: #d97706; transform: translateY(-2px); }
+.btn-intervenir-ticket:active { transform: translateY(0); }
+.btn-intervenir-ticket:disabled { background: #94a3b8; cursor: not-allowed; transform: none; }
+
+.btn-finalizar {
+    background: #10b981;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.btn-finalizar:hover { background: #34d399; transform: translateY(-2px); }
+
+.btn-cancelar {
+    background: transparent;
+    color: #94a3b8;
+    border: 1px solid #94a3b8;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.btn-cancelar:hover { background: rgba(148, 163, 184, 0.1); color: white; transform: translateY(-2px); }
+
+/* ============================================ */
+/* MODO CLARO — OVERRIDES PASANTE               */
+/* ============================================ */
+
+.dashboard-body.light .ticket-card-item { background: #ffffff; border-color: #e2e8f0; }
+.dashboard-body.light .ticket-details h3 { color: #0f172a; }
+.dashboard-body.light .ticket-desc { color: #475569; }
+.dashboard-body.light .ticket-meta { color: #2563eb; }
+.dashboard-body.light .ticket-reportado { color: #64748b; border-top-color: rgba(0, 0, 0, 0.1); }
+
+.dashboard-body.light .modal-content { background: #ffffff; border-color: #60a5fa; }
+.dashboard-body.light .modal-header { background: #ffffff; border-bottom-color: #e2e8f0; }
+.dashboard-body.light .modal-header h3 { color: #0f172a; }
+.dashboard-body.light .modal-footer { background: #ffffff; border-top-color: #e2e8f0; }
+.dashboard-body.light .ticket-info-summary { background: rgba(0, 0, 0, 0.03); border-left-color: #3b82f6; }
+.dashboard-body.light .ticket-info-summary p { color: #334155; }
+.dashboard-body.light .ticket-info-summary strong { color: #64748b; }
+.dashboard-body.light .modal-body .input-group label { color: #64748b; }
+.dashboard-body.light .modal-body .input-group .modal-select { background: rgba(255, 255, 255, 0.9); border-color: rgba(59, 130, 246, 0.3); color: #0f172a; }
+.dashboard-body.light .modal-body .input-group .modal-select option { background: #ffffff; color: #0f172a; }
+.dashboard-body.light .modal-body .input-group textarea { background: rgba(255, 255, 255, 0.9); border-color: rgba(0, 0, 0, 0.1); color: #0f172a; }
+.dashboard-body.light .btn-cancelar { color: #64748b; border-color: #cbd5e1; }
+.dashboard-body.light .btn-cancelar:hover { background: rgba(0, 0, 0, 0.05); color: #0f172a; }
+.dashboard-body.light .modal-body::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.05); }
+.dashboard-body.light .modal-body::-webkit-scrollbar-thumb { background: #3b82f6; }
+
+/* ============================================ */
+/* RESPONSIVE — MODAL PASANTE                   */
+/* ============================================ */
+
+@media (max-width: 768px) {
+    .modal-overlay { padding: 10px; align-items: flex-start; padding-top: 60px; }
+    .modal-content { width: 95%; max-width: none; max-height: 80vh; }
+    .modal-header { padding: 16px 20px 10px 20px; }
+    .modal-header h3 { font-size: 1.1rem; }
+    .modal-body { padding: 16px 20px; }
+    .modal-footer { padding: 14px 20px 20px 20px; gap: 10px; }
+    .ticket-info-summary { padding: 12px; margin-bottom: 16px; }
+    .ticket-info-summary p { font-size: 12px; }
+
+    .modal-body .input-group { display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 4px !important; margin-bottom: 16px !important; }
+    .modal-body .input-group label { min-width: auto !important; width: auto !important; margin-bottom: 0 !important; font-size: 12px !important; }
+    .modal-body .input-group .modal-select { width: 100% !important; min-width: auto !important; flex: none !important; padding: 10px 12px !important; font-size: 14px !important; }
+    .modal-body .input-group:last-of-type { margin-top: 8px !important; gap: 4px !important; }
+    .modal-body .input-group textarea { padding: 10px 12px !important; font-size: 14px !important; min-height: 80px !important; }
+
+    .btn-intervenir-ticket, .btn-finalizar, .btn-cancelar { padding: 8px 16px; font-size: 13px; flex: 1; justify-content: center; }
+
+    .input-group:has(#estadoActivo) { display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 4px !important; }
+    .input-group:has(#estadoActivo) label { width: 100% !important; margin-bottom: 0 !important; min-width: auto !important; }
+    .input-group:has(#estadoActivo) select { width: 100% !important; min-width: auto !important; flex: none !important; }
+}
+
+@media (min-width: 769px) {
+    .input-group:has(#estadoActivo) { display: flex !important; flex-direction: row !important; align-items: center !important; gap: 15px !important; }
+    .input-group:has(#estadoActivo) label { min-width: 180px !important; margin-bottom: 0 !important; }
+    .input-group:has(#estadoActivo) select { flex: 1 !important; min-width: 200px !important; }
+}
+
+@media (max-width: 480px) {
+    .modal-overlay { padding-top: 40px; }
+    .modal-content { max-height: 75vh; }
+    .modal-footer { flex-direction: column-reverse; }
+    .btn-intervenir-ticket, .btn-finalizar, .btn-cancelar { width: 100%; }
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Enviado - Soporte FCMF</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="neural-background"></div>
+        <div class="login-container">
+            <div class="login-card success-card">
+                <div class="login-header">
+            <div class="success-icon-container">
+                <div class="check-circle">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="3">
+                        <path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+            <h1>¡Ticket Enviado!</h1>
+            <p>Su solicitud ha sido registrada en el sistema de la FCMF.</p>
+        </div>
+
+            <div class="status-tracker">
+                <div id="estadoEspera" class="status-step active">
+                    <div class="dot"></div>
+                    <span>En espera</span>
+                </div>
+                
+                <div id="estadoIntervencion" class="status-step completed">
+                    <div class="dot"></div>
+                    <span>En intervencion</span>
+                </div>
+            </div>
+
+            <div class="admin-contact-card">
+                <p>Si no recibe respuesta inmediata, contacte con:</p>
+                <strong>Ing. Navarro Bruce</strong>
+                <a href="https://outlook.cloud.microsoft/mail/deeplink/compose?to=bruce.navarrog@ug.edu.ec"
+                    class="admin-email" target="_blank" rel="noopener noreferrer">
+                    bruce.navarrog@ug.edu.ec
+                </a>
+            </div>
+
+            <button onclick="location.href='usuario.html'" class="signin-btn" style="background: transparent; border: 1px solid #3b82f6;">
+                Generar otro reporte
+            </button>
+        </div>
+    </div>
+    <script src="usuario_espera.js"></script>
+</body>
+</html>
