@@ -24,8 +24,8 @@ export const handler = async (event) => {
         if (usuarioNormal) {
             user = usuarioNormal;
             tipo = "usuario";
-            nombre = user.nombre || "";
-            apellido = user.apellido || "";
+            nombre = user.nombres || "";
+            apellido = user.apellidos || "";
         }
 
         // Buscar en técnicos
